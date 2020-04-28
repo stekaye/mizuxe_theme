@@ -383,7 +383,7 @@
 
   
 
-  <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
     crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
     crossorigin="anonymous"></script>
@@ -395,31 +395,24 @@
     // Can put span with id of "year" to make this show up
     $('#year').text(new Date().getFullYear());
 
-    //Init ScrollSpy
-    $('body').scrollspy({target: '#main-nav'});
-
-   //Add smooth scrolling
-    $('#main-nav a').on('click', function(e) {
-      
-      //Check for a hash value
-      if (this.hash !== '') {
-        
-        //Prevent default behaviour
-        e.preventDefault();
-
-        //Store hash in a variable
-        const hash = this.hash;
-
-        //Animate smooth scroll
-        $('html, body').animate({
-          scrollTop: $(hash).offset().top
-        }, 900, function() {
-          
-          //Add hash to URL after scroll
-          window.location.hash - hash;
-        });
-      }
-    });
+    // Init Scrollspy
+ $('body').scrollspy({
+ target: '#main-nav',
+ offset: $('#main-nav').outerHeight()
+});
+// Smooth Scrolling
+ $('#main-nav a').on('click', function (event) {
+if (this.hash !== "") {
+event.preventDefault();
+const hash = this.hash;
+const navHeight = $('#main-nav').outerHeight();
+ $('html, body').animate({
+ scrollTop: $(hash).offset().top - navHeight + 1
+}, 800);
+// Add hash to url
+ window.location.hash = hash;
+}
+});
   </script>
 </body>
 
